@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title  -->
+    <title>Real Estate Agency</title>
+    {% block title %}{% endblock %}
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+    {% include 'partials/_preloader.html' %}
+    {% include 'partials/_header.html' %}
+    {% include 'partials/_hero.html' %}
+    
+    {% block content %}
+
+    {% endblock %}
+
+    {% include 'partials/_footer.html' %}
+
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/classy-nav.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+
+</body>
+</html>

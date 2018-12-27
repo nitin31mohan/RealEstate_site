@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<section  class="py-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <br><br>
+                <p>Here are the property listings that you have inquired about</p>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>UserName</th>
+                        <th>Inquire date</th>
+                        <th>PropertyName</th>
+                        <th>UserEmail</th>
+                        <th>UserNumber</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for enquiry in enquries %}
+                    <tr>
+                        <td><a href="/review/{{dish.id}}"></a>{{enquiry.name}}</td>
+                        <td>{{enquiry.contact_date}}</td>
+                        <td>{{enquiry.property_name}}</td>
+                        <td>{{enquiry.email}}</td>
+                        <td>{{enquiry.phone}}</td>
+                    </tr>
+                    {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

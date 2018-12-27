@@ -1,0 +1,17 @@
+<!-- Nav Start -->
+<div class="classynav">
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About Us</a></li>
+        <li><a href="{% url 'all_listings' %}">Listings</a></li>
+        <li><a href="{% url 'contactus' %}">Contact Us</a></li>
+
+        {% if user.is_authenticated %}
+            <li style="color:white; text-shadow: -2px 2px 3px black;"><a href="{% url 'dashboard' user.pk %}" class="btn btn-dark">{{ user }}</a></li>
+            <li style="color:cornsilk; text-shadow: -2px 2px 3px black;"><a href="{% url 'userlogout' %}" class="btn btn-danger">Logout</a></li>
+        {% else %}
+            <li style="color:white; text-shadow: -2px 2px 3px black;"><a href="{% url 'userlogin' %}" class="btn btn-primary">Login</a></li>
+            <li style="color:white; text-shadow: -2px 2px 3px black;"><a href="{% url 'register' %}" class="btn btn-success">Sign-Up</a></li>
+        {% endif %}
+    </ul>
+</div>

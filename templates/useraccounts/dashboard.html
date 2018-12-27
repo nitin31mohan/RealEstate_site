@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <br><br><br><br>
+
+  <!-- Alerts -->
+  {% include 'partials/_alerts.html' %}
+  
+  <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4 bg-dark text-white">User Dashboard</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="user-details" class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Welcome {{ user_details.username }}</h2>
+            </div>
+        </div>
+    </div>
+  </section>
+ 
+  <section id="dashboard" class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Username:</th>
+                                <td>{{ user_details.username }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">User's first name:</th>
+                                <td>{{ user_details.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">User's last name:</th>
+                                <td>{{ user_details.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">User's Email ID:</th>
+                                <td>{{ user_details.email }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">User's description:</th>
+                                <td>{{ user_details.description }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">User's profile image:</th>
+                                <td><img src={{ user_details.user_profile_image.url }} class="img-circle inline" style="border-radius: 20%; widows: 200px; height: 200px"></td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+  </section>
+
+  <section id="dashboard" class="py-4">
+        <div class="row justify-content-center">
+            <a class="btn btn-warning col-md-3 active text-white" href="{% url 'update' user.pk %}">Update details</a>
+        </div>
+  </section>
+
+  {% if user_details.is_seller %}
+    <section id="dashboard" class="py-4">
+        <div class="container">
+            <div class="row justify-content-center">            
+                <a class="col-md-4 btn btn-success active text-white" href="{% url 'postlisting' %}">Post NEW property</a>
+            <div class="col-md-12">
+            <br><br>
+
+            <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Property</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for listing in listing_details %}
+                            <tr>
+                                <td>{{ forloop.counter}}</td>
+                                <td>{{ listing }}</td>
+                                <td>
+                                <a class="btn btn-dark pull-right" href="#">View Enquiries</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+  {% else %}
+    <section id="dashboard" class="py-4">
+        <div class="container">
+            <div class="row justify-content-center">            
+                <div class="col-md-12">
+                    <br><br>
+                    <p>Here are the property listings that you have inquired about</p>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Property</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for enquiry in queries_made %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ enquiry }}</td>
+                                <td>
+                                <a class="btn btn-dark pull-right" href="#">View Listing</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+  {% endif %}
+
+{% endblock %}

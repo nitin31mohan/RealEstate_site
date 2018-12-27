@@ -1,0 +1,45 @@
+{% load static %}
+{% load humanize %}
+<!-- ##### Featured Properties Area Start ##### -->
+<section class="featured-properties-area section-padding-100-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading wow fadeInUp">
+                <h2>Featured Properties</h2>
+                <p>Suspendisse dictum enim sit amet libero malesuada feugiat.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+        {% for listing in listings %}
+            <div class="card single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms" style="width:20rem;margin:20px 20px 20px 0">
+                <div class="property-thumb">
+                    <img class="card-img-top" src="{{ listing.photo_main.url }}" style="width:100%;">
+                    <div class="tag">
+                        <span>For Sale/Rent</span>
+                    </div>
+                    <div class="list-price">
+                        <p>Rs. {{ listing.price | intcomma }}</p>
+                    </div>
+                </div>
+                <div class="card-body property-content">
+                    <h4 class="card-title">{{ listing.name }}</h4>
+                    <p class="location"><img scr="{% static 'img/icons/location.png' %}"></p>
+                    <p><i class="fa fa-map-marker"></i> {{listing.city}}, {{listing.address}}, ({{listing.state}})</p>
+                    <p><i class="fa fa-th-large"></i> {{listing.sqft}} Square foot</p>
+                    <p class="card-text">{{ listing.description }}</p>
+                    <p class="col-6">
+                        <i class="fa fa-clock-o"></i>{{ listing.posting_date | timesince }}
+                    </p>
+                    <div class="sale-notic">
+                        <a href="{% url 'listing' listing.id %}" class="btn btn-primary">MORE</a>
+                    </div>
+
+                </div>
+            </div>    
+        {% endfor %}
+        </div>
+    </div>
+</section>

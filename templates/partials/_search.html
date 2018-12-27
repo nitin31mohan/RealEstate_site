@@ -1,0 +1,77 @@
+{% load static %}
+
+<!-- ##### Advance Search Area Start ##### -->
+<section id="showcase-inner" class="showcase-search text-white py-5">
+<div class="container" style="z-index:10000">
+    <div class="col-md-12">
+                    <!-- Search Title -->
+                    <div class="search-title">
+                        <h4>Search for your home</h4>
+                    </div>
+                        <!-- Search Form -->
+                        <form action="{% url 'search' %}" id="advanceSearch">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="sr-only">Keywords</label>
+                                    <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
+                                </div>
+                      
+                                <div class="col-md-4 mb-3">
+                                    <label class="sr-only">City</label>
+                                    <input type="text" name="city" class="form-control" placeholder="City">
+                                </div>
+                      
+                                <div class="col-md-4 mb-3">
+                                    <label class="sr-only">State</label>
+                                    <select name="state" class="form-control">
+                                        <option selected="true" disabled="disabled">All States</option>
+                                        {% for key, value in state_choices.items %}
+                                            <option value="{{ key }}">{{ value }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>                         
+                                
+                            <div class="form-row">
+                                    <div class="col-md-12 mb-3">
+                                      <select name="price" class="form-control">
+                                        <option selected="true" disabled="disabled">Max Price</option>
+                                          {% for key, value in price_choices.items %}
+                                              <option value="{{ key }}">{{ value }}</option>
+                                          {% endfor %}
+                                      </select>
+                                    </div>
+                            </div>
+
+                            
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                      <label class="sr-only">Max Bedrooms</label>
+                                      <select name="bedrooms" class="form-control">
+                                        <option selected="true" disabled="disabled">Bedrooms</option>
+                                          {% for key, value in bedroom_choices.items %}
+                                              <option value="{{ key }}">{{ value }}</option>
+                                          {% endfor %}
+                                      </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                            <label class="sr-only">Max Bedrooms</label>
+                                            <select name="bedrooms" class="form-control">
+                                              <option selected="true" disabled="disabled">Bathrooms</option>
+                                                {% for key, value in bathroom_choices.items %}
+                                                    <option value="{{ key }}">{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                    </div>
+                                </div>
+                            
+                            
+                            <div class="col-12 d-flex justify-content-between align-items-end">
+                                <!-- Submit -->    
+                                <button class="btn btn-dark btn-block mt-4" type="submit">Submit form</button>       
+                            </div>
+                        </form>
+    </div>
+</div>
+</section>
